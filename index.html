@@ -1,10 +1,522 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Noman Official</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noman Official | Portfolio</title>
+  <style>
+    /* --- CSS Variables & Theme --- */
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-color: #f8fafc;
+      --muted-color: #94a3b8;
+      --accent-color: #38bdf8;
+      --accent-hover: #0284c7;
+      --border-color: #334155;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    /* --- Reset & Global Styles --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: var(--font-main);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* --- Header & Navigation --- */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 1000;
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent-color);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted-color);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-color);
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 1.5rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero-content {
+      max-width: 700px;
+    }
+
+    .hero-subtitle {
+      color: var(--accent-color);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .hero-title {
+      font-size: 3.2rem;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      font-weight: 800;
+    }
+
+    .hero-description {
+      font-size: 1.15rem;
+      color: var(--muted-color);
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.75rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-color);
+      color: #0f172a;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      background-color: var(--card-bg);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+
+    /* --- Common Section Layout --- */
+    section {
+      padding: 5rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 4px;
+      background-color: var(--accent-color);
+      margin-top: 0.5rem;
+      border-radius: 2px;
+    }
+
+    /* --- About Section --- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--muted-color);
+      margin-bottom: 1.25rem;
+      font-size: 1.05rem;
+    }
+
+    .stat-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent-color);
+    }
+
+    .stat-label {
+      color: var(--muted-color);
+      font-size: 0.9rem;
+    }
+
+    /* --- Skills Section --- */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .skill-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: 1.25rem;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-color);
+    }
+
+    /* --- Projects Section --- */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .project-body {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-desc {
+      color: var(--muted-color);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background-color: rgba(56, 189, 248, 0.1);
+      color: var(--accent-color);
+      font-size: 0.8rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    /* --- Contact Section --- */
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .contact-info p {
+      color: var(--muted-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-color);
+      font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent-color);
+    }
+
+    /* --- Footer --- */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      color: var(--muted-color);
+      font-size: 0.9rem;
+    }
+
+    /* --- Responsive Breakpoints --- */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.3rem;
+      }
+      
+      .about-grid,
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+    }
+  </style>
 </head>
-<body style="font-family:Arial;text-align:center;margin-top:100px;background:#f5f5f5;">
-  <h1>Welcome to Noman Official 🚀</h1>
-  <p>My first website is now live!</p>
+<body>
+
+  <!-- Header / Navigation -->
+  <header>
+    <nav>
+      <a href="#" class="logo">Noman Official</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <p class="hero-subtitle">Hello, my name is</p>
+        <h1 class="hero-title">Noman.</h1>
+        <p class="hero-description">
+          I build clean, modern, and high-performance digital experiences for the web.
+        </p>
+        <div class="cta-buttons">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <div class="section-header">
+        <h2 class="section-title">About Me</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            Welcome to my portfolio! I am a passionate creator focused on crafting fast, intuitive, and visually appealing web applications.
+          </p>
+          <p>
+            My goal is to bridge the gap between design and technical implementation, delivering software solutions that are both functional and delightful to use.
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-number">3+</div>
+            <div class="stat-label">Years of Experience</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">20+</div>
+            <div class="stat-label">Projects Completed</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <div class="section-header">
+        <h2 class="section-title">Skills & Expertise</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">HTML5 & CSS3</div>
+        <div class="skill-card">JavaScript</div>
+        <div class="skill-card">Responsive Design</div>
+        <div class="skill-card">Web Performance</div>
+        <div class="skill-card">Git & GitHub</div>
+        <div class="skill-card">UI/UX Design</div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <div class="section-header">
+        <h2 class="section-title">Featured Projects</h2>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-body">
+            <h3 class="project-title">E-Commerce Web App</h3>
+            <p class="project-desc">
+              A sleek online store frontend built with modern layouts, dynamic filtering, and optimized checkout UX.
+            </p>
+            <div class="project-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-body">
+            <h3 class="project-title">Analytics Dashboard</h3>
+            <p class="project-desc">
+              An interactive dashboard for tracking business metrics, visual data cards, and customizable charts.
+            </p>
+            <div class="project-tags">
+              <span class="tag">CSS Grid</span>
+              <span class="tag">UI Design</span>
+              <span class="tag">API Integration</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-body">
+            <h3 class="project-title">Task Management System</h3>
+            <p class="project-desc">
+              A productivity application helping users organize tasks, track deadlines, and collaborate effectively.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Web App</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Local Storage</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="section-header">
+        <h2 class="section-title">Get In Touch</h2>
+      </div>
+      <div class="contact-container">
+        <div class="contact-info">
+          <p>
+            I'm currently available for freelance work and full-time opportunities. Have a project or question? Send a message and let's discuss.
+          </p>
+        </div>
+        <form class="contact-form" action="#" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" required placeholder="Your Name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required placeholder="your.email@example.com">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" rows="5" required placeholder="How can I help you?"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="border: none; cursor: pointer; width: 100%;">
+            Send Message
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Noman Official. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
