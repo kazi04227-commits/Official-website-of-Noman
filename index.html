@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Noman | Portfolio</title>
-  <!-- Font Awesome for Instagram icon -->
+  <title>Noman | Premium Portfolio</title>
+  <!-- Font Awesome for Social and Contact Icons -->
   <link rel="stylesheet" href="https://cloudflare.com">
   
   <style>
-    /* Premium Dark Theme Styles matching Emily Clark layout */
+    /* Full Expanded Premium Dark Theme Styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      scroll-behavior: smooth;
     }
     body {
       background-color: #0d0d13;
@@ -24,9 +25,9 @@
     header {
       position: sticky;
       top: 0;
-      background: rgba(13, 13, 19, 0.8);
-      backdrop-filter: blur(10px);
-      border-b: 1px solid #1f1f2e;
+      background: rgba(13, 13, 19, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #1f1f2e;
       z-index: 100;
     }
     .nav-container {
@@ -47,7 +48,7 @@
     nav a {
       color: #94a3b8;
       text-decoration: none;
-      margin-left: 30px;
+      margin-left: 25px;
       font-size: 15px;
       font-weight: 500;
       transition: color 0.3s;
@@ -55,11 +56,11 @@
     nav a:hover {
       color: #38bdf8;
     }
-    /* Hero Section - Responsive 2 Column */
+    /* Hero Section */
     .hero {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 60px 20px;
+      padding: 80px 20px;
       min-height: calc(100vh - 70px);
       display: flex;
       align-items: center;
@@ -97,7 +98,7 @@
       color: #94a3b8;
       font-size: 16px;
       line-height: 1.6;
-      max-w: 500px;
+      max-width: 500px;
       margin-bottom: 30px;
     }
     /* CTA Buttons */
@@ -113,10 +114,13 @@
       text-decoration: none;
       font-size: 15px;
       transition: transform 0.3s, background 0.3s;
+      display: inline-block;
+      cursor: pointer;
     }
     .btn-primary {
       background: #38bdf8;
       color: #0d0d13;
+      border: none;
     }
     .btn-primary:hover {
       background: #0ea5e9;
@@ -125,19 +129,19 @@
     .btn-secondary {
       border: 2px solid #1f1f2e;
       color: #ffffff;
+      background: transparent;
     }
     .btn-secondary:hover {
       background: #1f1f2e;
       transform: scale(1.05);
     }
-    /* Hero Image Side with Glowing Neon Effect */
+    /* Hero Image Glowing Neon Effect */
     .hero-img-side {
       flex: 1;
       min-width: 300px;
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
     }
     .img-container {
       position: relative;
@@ -166,75 +170,144 @@
       border: 6px solid #0d0d13;
       z-index: 2;
     }
-    /* Social Icons Layout */
-    .social-links {
-      display: flex;
-      gap: 15px;
-    }
-    .social-links a {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: #161622;
-      border: 1px solid #27273a;
-      color: #94a3b8;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      text-decoration: none;
-      transition: all 0.3s;
-    }
-    .social-links a:hover {
-      color: #38bdf8;
-      border-color: #38bdf8;
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(56, 189, 248, 0.2);
-    }
-    /* Sections styling to fill up content */
-    .section-title {
-      text-align: center;
-      font-size: 32px;
-      font-weight: 700;
-      margin-bottom: 50px;
-      color: #ffffff;
-    }
+    /* Content Sections Styles */
     .content-section {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 80px 20px;
+      padding: 100px 20px;
       border-top: 1px solid #1f1f2e;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: #94a3b8;
+      max-width: 600px;
+      margin: 0 auto 60px auto;
+      font-size: 16px;
+      line-height: 1.6;
     }
     /* Grid system for skills and projects */
     .grid-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
     }
     .card {
       background: #161622;
       border: 1px solid #1f1f2e;
-      padding: 30px;
-      border-radius: 16px;
+      padding: 35px;
+      border-radius: 20px;
       text-align: center;
-      transition: border-color 0.3s;
+      transition: all 0.3s ease;
     }
     .card:hover {
       border-color: #38bdf8;
+      transform: translateY(-5px);
     }
     .card i {
-      font-size: 40px;
+      font-size: 45px;
       color: #38bdf8;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
     .card h3 {
-      font-size: 20px;
-      margin-bottom: 10px;
+      font-size: 22px;
+      margin-bottom: 12px;
+      font-weight: 600;
     }
     .card p {
       color: #94a3b8;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    /* Contact Section Layout with Form */
+    .contact-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      align-items: flex-start;
+    }
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+    }
+    .contact-info h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #38bdf8;
+    }
+    .contact-info p {
+      color: #94a3b8;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+    .info-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 15px;
+    }
+    .info-item i {
+      width: 45px;
+      height: 45px;
+      background: #161622;
+      border: 1px solid #1f1f2e;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #38bdf8;
+      font-size: 18px;
+    }
+    .info-text h4 {
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+    .info-text p {
+      margin-bottom: 0;
       font-size: 14px;
-      line-height: 1.5;
+    }
+    /* Modern Contact Form Style */
+    .contact-form-container {
+      flex: 1.5;
+      min-width: 300px;
+      background: #161622;
+      border: 1px solid #1f1f2e;
+      padding: 40px;
+      border-radius: 24px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #94a3b8;
+    }
+    .form-control {
+      width: 100%;
+      background: #0d0d13;
+      border: 1px solid #1f1f2e;
+      padding: 14px 20px;
+      border-radius: 12px;
+      color: #ffffff;
+      font-size: 15px;
+      transition: border-color 0.3s;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: #38bdf8;
+    }
+    textarea.form-control {
+      resize: vertical;
+      min-height: 140px;
     }
     /* Footer design */
     footer {
@@ -252,13 +325,23 @@
       margin-bottom: 20px;
     }
     footer .footer-socials a {
-      color: #64748b;
+      width: 40px;
+      height: 40px;
+      background: #161622;
+      border: 1px solid #1f1f2e;
+      color: #94a3b8;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       text-decoration: none;
       font-size: 16px;
-      transition: color 0.3s;
+      transition: all 0.3s;
     }
     footer .footer-socials a:hover {
       color: #38bdf8;
+      border-color: #38bdf8;
+      transform: translateY(-3px);
     }
     /* Mobile Responsive Queries */
     @media (max-width: 768px) {
@@ -274,8 +357,14 @@
       .hero-text h1 {
         font-size: 40px;
       }
-      .btn-group, .social-links {
+      .btn-group {
         justify-content: center;
+      }
+      .contact-wrapper {
+        flex-direction: column;
+      }
+      .contact-form-container {
+        padding: 25px;
       }
     }
   </style>
@@ -287,6 +376,7 @@
     <div class="nav-container">
       <div class="logo">NOMAN</div>
       <nav>
+        <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
@@ -296,7 +386,7 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section id="home" class="hero">
     <div class="hero-text">
       <h3>Hello, I'm</h3>
       <h1><span>Noman.</span></h1>
@@ -306,10 +396,6 @@
       <div class="btn-group">
         <a href="#projects" class="btn btn-primary">View My Work</a>
         <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-      </div>
-      
-      <div class="social-links">
-        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
       </div>
     </div>
     
@@ -323,40 +409,6 @@
   <!-- About Section -->
   <section id="about" class="content-section">
     <h2 class="section-title">About Me</h2>
-    <p style="text-align: center; max-width: 700px; margin: 0 auto; color: #94a3b8; line-height: 1.7; font-size: 17px;">
-      I am a professional Front-End Developer dedicated to making websites visually stunning and structurally sound. With an eye for detailed web decoration and modern color palettes, I help craft unique digital portfolios.
-    </p>
-  </section>
-
-  <!-- Skills Section -->
-  <section id="skills" class="content-section">
-    <h2 class="section-title">My Tech Stack</h2>
-    <div class="grid-container">
-      <div class="card">
-        <i class="fab fa-html5" style="color: #e34c26;"></i>
-        <h3>HTML5</h3>
-        <p>Semantic page structure and structural layouts.</p>
-      </div>
-      <div class="card">
-        <i class="fab fa-css3-alt" style="color: #264de4;"></i>
-        <h3>CSS3</h3>
-        <p>Premium layouts, flexbox, grid, animations and effects.</p>
-      </div>
-      <div class="card">
-        <i class="fab fa-js" style="color: #f7df1e;"></i>
-        <h3>JavaScript</h3>
-        <p>Interactive web components and modern functional algorithms.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer / Contact -->
-  <footer id="contact">
-    <div class="footer-socials">
-      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-    </div>
-    <p>&copy; 2026 Noman. All rights reserved.</p>
-  </footer>
-
-</body>
-</html>
+    <p class="section-subtitle">A brief introduction about my background, passion, and goals.</p>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto; color: #94a3b8; line-height: 1.8; font-size: 17px;">
+      I am a professional Front-End Developer dedicated to making websites visually stunning and structurally sound. With an eye for detailed web decoration and modern color palettes, I help craft unique digital portfolios. I love turning ideas into code and constantly pushing my limits to learn new cutting-edge technologies.
