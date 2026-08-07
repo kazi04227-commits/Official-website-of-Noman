@@ -1,35 +1,160 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Car Racing</title>
+
 <style>
-body{
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
 background:#111;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
+overflow:hidden;
 font-family:Arial;
+}
+
+canvas{
+display:block;
+margin:auto;
+background:#444;
+}
+
+#score{
+position:absolute;
+top:15px;
+left:15px;
 color:white;
-}
-h1{
-font-size:40px;
-}
-p{
-text-align:center;
+font-size:28px;
+font-weight:bold;
 }
 </style>
+
 </head>
 
 <body>
 
-<div>
-<h1>🏎️ Car Racing</h1>
-<p>Coming Soon...</p>
-<p>Noman Official</p>
-</div>
+<div id="score">Score : 0</div>
+
+<canvas id="game" width="400" height="700"></canvas>
+
+<script>
+
+const canvas=document.getElementById("game");
+const ctx=canvas.getContext("2d");
+
+let score=0;
+
+const player={
+x:170,
+y:580,
+w:60,
+h:100,
+speed:7
+};
+
+document.addEventListener("keydown",(e)=>{
+
+if(e.key=="ArrowLeft" && player.x>40){
+player.x-=player.speed*5;
+}
+
+if(e.key=="ArrowRight" && player.x<300){
+player.x+=player.speed*5;
+}
+
+});
+
+function drawRoad(){
+
+ctx.fillStyle="#555";
+ctx.fillRect(0,0,400,700);
+
+ctx.fillStyle="white";
+
+for(let i=0;i<700;i+=80){
+
+ctx.fillRect(195,i,10,40);
+
+}
+
+}
+
+function drawPlayer(){
+
+ctx.fillStyle="red";
+ctx.fillRect(player.x,player.y,player.w,player.h);
+
+}
+  let enemies = [];
+
+function createEnemy() {
+    enemies.push({
+        x: Math.random() * 300 + 40,
+        y: -120,
+        w: 60,
+        h: 100,
+        speed: 5
+    });
+}
+
+setInterval(createEnemy, 1000);
+
+function drawEnemies() {
+
+    ctx.fillStyle = "cyan";
+
+    for (let i = 0; i < enemies.length; i++) {
+
+        let e = enemies[i];
+
+        e.y += e.speed;
+
+        ctx.fillRect(e.x, e.y, e.w, e.h);
+
+        if (
+            player.x < e.x + e.w &&
+            player.x + player.w > e.x &&
+            player.y < e.y + e.h &&
+            player.y + player.h > e.y
+        ) {
+
+            alert("Game Over! Score : " + score);
+            location.reload();
+
+        }
+
+        if (e.y > 700) {
+
+            enemies.splice(i, 1);
+            score++;
+
+            document.getElementById("score").innerHTML =
+            "Score : " + score;
+
+        }
+
+    }
+
+}
+  function gameLoop(){
+
+    ctx.clearRect(0,0,400,700);
+
+    drawRoad();
+    drawPlayer();
+    drawEnemies();
+
+    requestAnimationFrame(gameLoop);
+}
+
+gameLoop();
+
+</script>
 
 </body>
 </html>
